@@ -1,7 +1,6 @@
 import './App.css'
 import Navigation from "./components/navigation/Navigation"
-import Hero from "./components/hero/Hero"
-import Features from "./components/features/Features";
+import Home from "./pages/Home";
 
 function App() {
     return (
@@ -11,8 +10,7 @@ function App() {
                 <Navigation/>
             </header>
             <main>
-                <Hero/>
-                <Features />
+                <Home/>
             </main>
         </div>
     )
