@@ -1,6 +1,7 @@
 import './App.css'
 import Navigation from "./components/navigation/Navigation"
 import Hero from "./components/hero/Hero"
+import Features from "./components/features/Features";
 
 function App() {
     return (
@@ -8,8 +9,11 @@ function App() {
 
             <header className="App-header">
                 <Navigation/>
-                <Hero/>
             </header>
+            <main>
+                <Hero/>
+                <Features />
+            </main>
         </div>
     )
 }
