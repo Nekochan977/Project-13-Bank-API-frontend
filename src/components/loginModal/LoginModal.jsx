@@ -1,4 +1,5 @@
 import "./LoginModal.css"
+import {Link} from "react-router-dom";
 
 const LoginModal = () => {
     return (
@@ -20,7 +21,7 @@ const LoginModal = () => {
                 >
                 </div>
                 {/*PLACEHOLDER DUE TO STATIC SITE*/}
-                <a href="./user.html" className="sign-in-button">Sign In</a>
+                <Link to="/user" className="sign-in-button">Sign In</Link>
                 {/*SHOULD BE THE BUTTON BELOW*/}
                 {/*<button className="sign-in-button">Sign In</button>*/}
 
