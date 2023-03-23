@@ -15,10 +15,10 @@ const Navigation = () =>{
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
                 <div>
-                    <button className="main-nav-item" >
+                    <Link className="main-nav-item" to="/login">
                         <i className="fa fa-user-circle"></i>
                         Sign In
-                    </button>
+                    </Link>
                 </div>
             </nav>
         </header>
