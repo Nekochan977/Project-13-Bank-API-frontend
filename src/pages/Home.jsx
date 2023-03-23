@@ -3,10 +3,10 @@ import Features from "../components/features/Features"
 
 const Home = () => {
     return (
-        <div>
+        <main>
             <Hero/>
             <Features />
-        </div>
+        </main>
 
     )
 }
