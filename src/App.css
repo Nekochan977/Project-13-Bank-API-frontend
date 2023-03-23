@@ -17,7 +17,7 @@ body {
 }
 .bg-dark {
     background-color: #12002b;
-    height: 76vh;
+    min-height: 76vh;
     padding: 1rem;
 }
 
