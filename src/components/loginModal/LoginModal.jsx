@@ -2,14 +2,18 @@ import "./LoginModal.css"
 // import {Link} from "react-router-dom";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {userConnected} from "../../app/userSlice";
 
 const LoginModal = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
-        const navigate = useNavigate()
+    const [token, setToken] = useState("")
 
+    const dispatch = useDispatch()
 
+    const navigate = useNavigate()
 
 
     let handleSubmit = async (e) =>{
@@ -28,6 +32,9 @@ const LoginModal = () => {
             let resJson = await res.json()
             console.log(resJson)
             if (resJson.status === 200) {
+                dispatch(
+                    userConnected(token)
+                )
                 navigate("/user")
             } else {
                 setMessage("Invalid email or password");
@@ -37,8 +44,6 @@ const LoginModal = () => {
             console.log(err);
         }
     }
-
-
 
 
     return (
