@@ -3,13 +3,15 @@ import "./LoginModal.css"
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {userConnected} from "../../app/userSlice";
+
+
+import {setToken} from "../../app/userSlice";
 
 const LoginModal = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
-    const [token, setToken] = useState("")
+    // const [token, setToken] = useState("")
 
     const dispatch = useDispatch()
 
@@ -30,10 +32,11 @@ const LoginModal = () => {
                 }),
             })
             let resJson = await res.json()
-            console.log(resJson)
+            console.log(resJson.body.token)
             if (resJson.status === 200) {
+                const token = resJson.body.token
                 dispatch(
-                    userConnected(token)
+                    setToken(token)
                 )
                 navigate("/user")
             } else {

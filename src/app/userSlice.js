@@ -9,7 +9,10 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        userConnected(state, action){
+        setToken(state, action) {
+            state.token = action.payload
+        },
+        setUser(state, action) {
             state.push(action.payload)
         }
     }
@@ -18,5 +21,6 @@ const userSlice = createSlice({
 export const selectUser = (state) => state.user
 
 export const {userConnected} = userSlice.actions;
+export const {setToken} = userSlice.actions
 
 export default userSlice.reducer
