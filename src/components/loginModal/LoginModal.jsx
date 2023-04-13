@@ -11,7 +11,6 @@ const LoginModal = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
-    // const [token, setToken] = useState("")
 
     const dispatch = useDispatch()
 
@@ -32,6 +31,7 @@ const LoginModal = () => {
                 }),
             })
             let resJson = await res.json()
+            console.log(resJson)
             console.log(resJson.body.token)
             if (resJson.status === 200) {
                 const token = resJson.body.token

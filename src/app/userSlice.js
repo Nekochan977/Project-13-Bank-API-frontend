@@ -20,7 +20,6 @@ const userSlice = createSlice({
 
 export const selectUser = (state) => state.user
 
-export const {userConnected} = userSlice.actions;
-export const {setToken} = userSlice.actions
+export const {setToken, setUser} = userSlice.actions
 
 export default userSlice.reducer
