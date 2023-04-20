@@ -15,7 +15,6 @@ const User = () => {
             headers: {'Authorization': `Bearer ${token}`}
         }).then(async (resp) => {
             const user = await resp.json()
-            console.log(user)
             dispatch(setUser(user.body))
         })
     })

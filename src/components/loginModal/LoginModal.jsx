@@ -31,8 +31,7 @@ const LoginModal = () => {
                 }),
             })
             let resJson = await res.json()
-            console.log(resJson)
-            console.log(resJson.body.token)
+
             if (resJson.status === 200) {
                 const token = resJson.body.token
                 dispatch(
