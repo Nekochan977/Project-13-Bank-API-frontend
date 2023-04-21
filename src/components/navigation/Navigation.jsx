@@ -14,7 +14,6 @@ const Navigation = () =>{
         dispatch(setUser(null));
         dispatch(setToken(null))
     }
-    console.log(user)
 
     return(
         <header>
