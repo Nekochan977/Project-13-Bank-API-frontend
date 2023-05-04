@@ -1,8 +1,7 @@
 import "./LoginModal.css"
-// import {Link} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 import {setToken} from "../../app/userSlice";
@@ -12,10 +11,16 @@ const LoginModal = () => {
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
 
+    const token = useSelector((state)=>state.user.token)
+
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
-
+    useEffect(() => {
+        if(token !== null) {
+            navigate('/user')
+        }
+    })
 
     let handleSubmit = async (e) =>{
         e.preventDefault()
@@ -66,12 +71,8 @@ const LoginModal = () => {
                 >Remember me</label
                 >
                 </div>
-                {/*PLACEHOLDER DUE TO STATIC SITE*/}
-                {/*<Link to="/user" className="sign-in-button">Sign In</Link>*/}
-                {/*SHOULD BE THE BUTTON BELOW*/}
-                <button className="sign-in-button" type={"submit"}>Sign In</button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-
+                <button className="sign-in-button" type={"submit"}>Sign In</button>
             </form>
         </section>
     )
