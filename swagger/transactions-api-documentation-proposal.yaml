@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: Argent Bank API documentation for transactions
+  description: Proposal of API model for user transactions
+  version: 1.0.1
+
+servers:
+  - url: http://localhost:3001/api/v2
+
+paths:
+  /user/profile/transactions:
+    get:
+      summary: Get all transactions
+      description: Returns an array with all transactions
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transactions'
+        "401":
+          description: Unauthorized (check your JWT token)
+        "500":
+          description: Internal server error
+      security:
+        - bearerAuth:
+            - read:transactions
+  /user/profile/transactions/{transactionId}:
+    get:
+      summary: Get a transaction by ID
+      description: Returns a single transaction
+      operationId: getTransactionById
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID of transaction to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        "401":
+          description: Unauthorized (check your JWT token)
+        "404":
+          description: Id of transaction not found
+        "500":
+          description: Internal server error
+      security:
+        - bearerAuth:
+            - read:transactions
+    put:
+      summary: Edit category
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID of transaction to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: category
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - groceries
+              - transportation
+              - health
+              - undefined
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        "401":
+          description: Unauthorized (check your JWT token)
+        "404":
+          description: Id of transaction not found
+        "500":
+          description: Internal server error
+      security:
+        - bearerAuth:
+            - read:transactions
+    post:
+      summary: Post comment on transaction
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID of transaction to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: comment
+          in: query
+          schema:
+            type: string
+            example: Groceries for Carine's birthday
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        "401":
+          description: Unauthorized (check your JWT token)
+        "404":
+          description: Id of transaction not found
+        "500":
+          description: Internal server error
+      security:
+        - bearerAuth:
+            - read:transactions
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    transactions:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/transaction'
+    transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        amount:
+          type: integer
+          format: int64
+          example: 2930
+        date:
+          type: string
+          format: date-time
+        category:
+          type: string
+          description: category of operation
+          example: groceries
+          enum:
+            - groceries
+            - transportation
+            - health
+            - undefined
+        comment:
+          type: string
+          description: comment added on transaction
+          example: Groceries for Carine's birthday
+
