@@ -1,3 +1,14 @@
+.header {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+.edit-button-container {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    width: 10rem;
+    margin: 0 auto;
+}
 .edit-button {
     border-color: #00bc77;
     background-color: #00bc77;
@@ -5,8 +16,12 @@
     font-weight: bold;
     padding: 10px;
 }
-
-.header {
+.cancel-button {
+    border-color: #00bc77;
     color: #fff;
-    margin-bottom: 2rem;
+    background-color: #00bc77;
+    padding: 10px;
+}
+.cancel-button > i {
+    font-weight: bold;
 }

@@ -1,7 +1,7 @@
 import "./Header.css"
 import {useDispatch, useSelector} from "react-redux"
-import {useEffect, useState} from "react";
-import {setToken, setUser} from "../../../app/userSlice";
+import {useState} from "react";
+import {setUser} from "../../../app/userSlice"
 
 const Header = () => {
     const user = useSelector(state => state.user.user)
@@ -22,7 +22,6 @@ const Header = () => {
         } else if (e.target.id === "lastname"){
             setUserLastName(e.target.value)
             setHasLastName(true)
-
         }
     }
 
@@ -60,15 +59,13 @@ const Header = () => {
     if(isEditMode === false) {
         return (
             <div className="header">
-
                 {user && (<h1>Welcome back<br/>{user.firstName} {user.lastName}!</h1>)}
-                <button className="edit-button" onClick={() => setIsEditMode(!isEditMode)}>Edit Name</button>
+                <button className="edit-button" onClick={() => setIsEditMode(true)}>Edit Name</button>
             </div>
         )
     } else {
         return (
             <div className="header">
-
                 <form>
                     <label htmlFor="firstname"></label>
                     <input
@@ -86,8 +83,12 @@ const Header = () => {
                     />
                     {hasLastName === false ? <p>Veuillez entrer un nom de famille</p> : "" }
                 </form>
-                <button className="edit-button" onClick={saveName}>Save Name</button>
-                <button className="edit-button" onClick={() => setIsEditMode(!isEditMode)}>Cancel Edit Name</button>
+                <div className="edit-button-container">
+                    <button className="edit-button" onClick={saveName}>Save Name</button>
+                    <button className="cancel-button" onClick={() => setIsEditMode(false)}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         )
     }
