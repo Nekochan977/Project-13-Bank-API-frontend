@@ -1,10 +1,19 @@
 import "./LoginModal.css"
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react"
+import {useNavigate} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
 
+import {setToken} from "../../app/userSlice"
 
-import {setToken} from "../../app/userSlice";
+/**
+ * Login modal to connect on the user's interface
+ * @global { email } email of the user
+ * @global { password } password of the user
+ * @global { message } error message if wrong/ missing input
+ * @method { post } call api with input data
+ * @dispatch { Token } register the token in the redux store
+ * @navigate if response === "200" navigate to user's interface
+ */
 
 const LoginModal = () => {
     const [email, setEmail] = useState("")

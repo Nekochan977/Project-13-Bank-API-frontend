@@ -1,5 +1,10 @@
 import "./Account.css"
 
+/**
+ * @returns the accounts and transactions content.
+ * To be changed when the transactions API will be completed to receive the data
+ */
+
 const Account = () => {
     return (
         <>

@@ -1,12 +1,13 @@
 import './App.css'
-// import Navigation from "./components/navigation/Navigation"
-// import Footer from "./components/footer/Footer"
-import Layout from "./components/layout/Layout";
+import Layout from "./components/layout/Layout"
 import Home from "./pages/Home"
-import User from "./pages/User";
+import User from "./pages/User"
 import {HOME, LOGIN, USER} from "./routes"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from "./pages/Login"
+/**
+ * @returns the parent and the nested routes
+ */
 
 function App() {
     return (
