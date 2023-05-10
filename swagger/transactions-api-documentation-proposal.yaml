@@ -65,16 +65,11 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: category
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - groceries
-              - transportation
-              - health
-              - undefined
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/category'
       responses:
         "200":
           description: Successful operation
@@ -90,7 +85,7 @@ paths:
           description: Internal server error
       security:
         - bearerAuth:
-            - read:transactions
+            - read:transaction
     post:
       summary: Post comment on transaction
       parameters:
@@ -101,14 +96,14 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: comment
-          in: query
-          schema:
-            type: string
-            example: Groceries for Carine's birthday
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/comment'
       responses:
-        "200":
-          description: Successful operation
+        "201":
+          description: Comment successfully added
           content:
             application/json:
               schema:
@@ -121,7 +116,34 @@ paths:
           description: Internal server error
       security:
         - bearerAuth:
-            - read:transactions
+            - read:transaction
+    delete:
+      summary: Delete comment on transaction
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID of transaction to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        "401":
+          description: Unauthorized (check your JWT token)
+        "404":
+          description: Id of transaction not found
+        "500":
+          description: Internal server error
+      security:
+        - bearerAuth:
+            - read:transaction
+
 
 components:
   securitySchemes:
@@ -145,7 +167,7 @@ components:
         amount:
           type: integer
           format: int64
-          example: 2930
+          example: 293
         date:
           type: string
           format: date-time
@@ -162,4 +184,17 @@ components:
           type: string
           description: comment added on transaction
           example: Groceries for Carine's birthday
+    category:
+      type: string
+      description: category of operation
+      example: groceries
+      enum:
+        - groceries
+        - transportation
+        - health
+        - undefined
+    comment:
+      type: string
+      description: comment added on transaction
+      example: Groceries for Carine's birthday
 
